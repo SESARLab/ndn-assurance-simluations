@@ -48,6 +48,7 @@ def get_arg_parser() -> ArgumentParser:
     arg_parser.add_argument("-d", "--domain", type=str, help="Path to domain file")
     arg_parser.add_argument("-n", "--n_producers", type=int, help="Number of producers")
     arg_parser.add_argument("-i", "--i_producer", type=int, help="Index of producer")
+    arg_parser.add_argument("-l", "--response_length", type=int, default=20, help="Response length")
     return arg_parser
 
 
@@ -88,7 +89,7 @@ if __name__ == '__main__':
                 should_respond = True
 
         if should_respond:
-            content = rand_string(10)
+            content = rand_string(args.response_length)
             app.put_data(
                 name,
                 content=content.encode(),

@@ -1,19 +1,35 @@
 import json
+from collections import Iterable
 from os.path import dirname, abspath
 
 import matplotlib.pyplot as plt
 
-LOG_FILE = abspath(f"{dirname(__file__)}/../logs/execution_mut_logs.json")
-LOG_FILE = abspath("/tmp/ca/logs.json")
+LOG_FILES = [abspath(f"{dirname(__file__)}/../logs/execution_mut_logs.json")]
+LOG_FILES = [abspath(f"{dirname(__file__)}/../logs/execution_logs_{i}.json") for i in [1, 2, 3, 4, 5]]
+
+
+def mean(it) -> float:
+    try:
+        return float(sum(it)) / len(it)
+    except ZeroDivisionError:
+        return 0.0
+
 
 if __name__ == '__main__':
-    with open(LOG_FILE) as f:
-        data = {k: v for k, v in json.load(f).items() if "index" in k}
+    logs = dict()
+    for log_file in LOG_FILES:
+        with open(log_file) as f:
+            logs[log_file] = {k: v for k, v in json.load(f).items() if "index" in k}
 
-    max_index = min(max(map(int, data["duration_index"].keys())), 1000)
+    indexes = {int(k) for log_file in LOG_FILES for k in logs[log_file]["duration_index"].keys() if int(k) <= 1000}
+    values = {
+        i: mean(list(
+            filter(lambda v: v is not None, [logs[log_file]["duration_index"].get(str(i)) for log_file in LOG_FILES])))
+        for i in indexes}
+
     plt.plot(
-        list(range(max_index + 1)),
-        list(map(lambda k: data["duration_index"][str(k)] / 1e9, range(max_index + 1))),
+        list(sorted(values.keys())),
+        list(map(lambda i: values[i] / 1e9, sorted(values.keys()))),
         c="k", linewidth=0.5)
     plt.xlabel("Iteration", loc="right")
     plt.ylabel("Execution time (s)", loc="top")

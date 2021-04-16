@@ -36,8 +36,8 @@ if __name__ == '__main__':
     plot_data["l_reg"] = l_reg.predict(plot_data.index.values.reshape(-1, 1))
 
     plot_data = plot_data[["r_mean", "l_reg"]]
-    plot_data.columns = ["Rolling mean (7)", "Linear regression"]
-    plot_data.plot(linewidth=0.75, style=["-", "--", "-."], c="k")
+    plot_data.columns = ["Time", "Linear regression"]
+    plot_data.plot(linewidth=0.75, style=["-", "--"], c="k")
     plt.xlabel("Iteration", loc="right")
     plt.ylabel("Execution time (s)", loc="top")
     plt.tight_layout()

@@ -1,7 +1,9 @@
 argparse~=1.4.0
-matplotlib~=3.3.4
+matplotlib~=3.4.1
 mininet~=2.3.0
 Mini-NDN~=0.5.0
 pandas~=1.2.3
 python-ndn~=0.3a1
 seaborn~=0.11.1
+numpy~=1.20.1
+scikit-learn~=0.24.1

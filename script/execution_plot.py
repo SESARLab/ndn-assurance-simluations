@@ -8,6 +8,7 @@ from sklearn import linear_model
 LOG_FILES = [abspath(f"{dirname(__file__)}/../logs/execution_mut_logs.json")]
 LOG_FILES = [abspath(f"{dirname(__file__)}/../logs/execution_logs_{i}.json") for i in [1, 2, 3, 4, 5]]
 LOG_FILES = [abspath(f"{dirname(__file__)}/../logs/new_execution_logs_{i}.json") for i in [1, 2, 3, 4, 5]]
+LOG_FILES = [abspath(f"{dirname(__file__)}/../logs/new_execution_logs_extra_rule_{i}.json") for i in [1, 2, 3, 4, 5]]
 
 
 def mean(it) -> float:

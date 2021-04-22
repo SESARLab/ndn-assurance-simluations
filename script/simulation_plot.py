@@ -7,7 +7,7 @@ from matplotlib.colors import ListedColormap
 ATTACK_START, ATTACK_END, LOG_FILE = None, None, abspath(f"{dirname(__file__)}/../logs/certification_logs.json")
 ATTACK_START, ATTACK_END, LOG_FILE = 276, 283, abspath(f"{dirname(__file__)}/../logs/attack_logs.json")
 ATTACK_START, ATTACK_END, LOG_FILE = None, None, abspath(f"{dirname(__file__)}/../logs/execution_new_rule.json")
-ATTACK_START, ATTACK_END, LOG_FILE = 380, 390, abspath(f"{dirname(__file__)}/../logs/attack_new_rule.json")
+ATTACK_START, ATTACK_END, LOG_FILE = 250, 260, abspath(f"{dirname(__file__)}/../logs/attack_new_rule.json")
 
 METRICS = [f"M{i + 1}" for i in range(12)]
 METRICS.remove("M5")
@@ -57,7 +57,7 @@ if __name__ == '__main__':
     plt.subplots_adjust(left=0, right=1, top=1, bottom=0, wspace=0, hspace=0)
     plt.ylabel("Metric", loc="top")
     plt.xlim((min_index, max_index))
-    plt.legend(bbox_to_anchor=(0, 1, 1, 0), loc="lower left", mode="expand", ncol=3)
+    plt.legend(bbox_to_anchor=(0, 1, 1, 0), loc="lower left", mode="expand", ncol=3, frameon=False)
     plt.semilogy()
 
     # plt.plot(indexes, list(map(lambda m: sum(m.values()), measures["M6"])), label="M6 sum", c="k", linestyle="--")

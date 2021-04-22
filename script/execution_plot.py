@@ -41,6 +41,7 @@ if __name__ == '__main__':
     plot_data.plot(linewidth=0.75, style=["-", "--"], c="k")
     plt.xlabel("Iteration", loc="right")
     plt.ylabel("Execution time (s)", loc="top")
+    plt.legend(frameon=False)
     plt.tight_layout()
     plt.savefig("../plots/execution.pdf", format="pdf")
     plt.savefig("../plots/execution.png", format="png")

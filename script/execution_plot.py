@@ -6,9 +6,12 @@ import pandas as pd
 from sklearn import linear_model
 
 LOG_FILES = [abspath(f"{dirname(__file__)}/../logs/execution_mut_logs.json")]
-LOG_FILES = [abspath(f"{dirname(__file__)}/../logs/execution_logs_{i}.json") for i in [1, 2, 3, 4, 5]]
-LOG_FILES = [abspath(f"{dirname(__file__)}/../logs/new_execution_logs_{i}.json") for i in [1, 2, 3, 4, 5]]
-LOG_FILES = [abspath(f"{dirname(__file__)}/../logs/new_execution_logs_extra_rule_{i}.json") for i in [1, 2, 3, 4, 5]]
+LOG_FILES = [abspath(f"{dirname(__file__)}/../logs/execution_logs_{i}.json")
+             for i in [1, 2, 3, 4, 5]]
+LOG_FILES = [abspath(f"{dirname(__file__)}/../logs/new_execution_logs_{i}.json")
+             for i in [1, 2, 3, 4, 5]]
+LOG_FILES = [abspath(f"{dirname(__file__)}/../logs/new_execution_logs_extra_rule_{i}.json")
+             for i in [1, 2, 3, 4, 5]]
 
 
 def mean(it) -> float:
@@ -22,17 +25,23 @@ if __name__ == '__main__':
     logs = dict()
     for log_file in LOG_FILES:
         with open(log_file) as f:
-            logs[log_file] = {k: v for k, v in json.load(f).items() if "index" in k}
+            logs[log_file] = {k: v for k, v in json.load(
+                f).items() if "index" in k}
 
-    indexes = {int(k) for log_file in LOG_FILES for k in logs[log_file]["duration_index"].keys() if int(k) <= 1000}
+    indexes = {int(k) for log_file in LOG_FILES for k in logs[log_file]["duration_index"].keys(
+    ) if int(k) <= 1000}
     values = {
         i: mean(list(
-            filter(lambda v: v is not None, [logs[log_file]["duration_index"].get(str(i)) for log_file in LOG_FILES])))
+            map(lambda w: float(w)/10e9,
+                filter(lambda v: v is not None, [logs[log_file]["duration_index"].get(str(i)) for log_file in
+                                                 LOG_FILES]))))
         for i in indexes}
 
-    plot_data = pd.DataFrame.from_dict(values, orient="index", columns=["time"])
+    plot_data = pd.DataFrame.from_dict(
+        values, orient="index", columns=["time"])
     l_reg = linear_model.LinearRegression()
-    l_reg.fit(plot_data.index.values.reshape(-1, 1), plot_data["time"].values.reshape(-1, 1))
+    l_reg.fit(plot_data.index.values.reshape(-1, 1),
+              plot_data["time"].values.reshape(-1, 1))
     plot_data["r_mean"] = plot_data["time"].rolling(7).mean()
     plot_data["l_reg"] = l_reg.predict(plot_data.index.values.reshape(-1, 1))
 

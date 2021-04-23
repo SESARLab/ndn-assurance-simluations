@@ -70,9 +70,9 @@ if __name__ == '__main__':
 
     plt.subplot(2, 1, 2)
     if ATTACK_START is not None:
-        tasks = ["C5", "C6", "C7", "C11", "R2", "R5", "P1"]
+        tasks = ["C5", "C6", "C7", "C11", "R2", "R5", "P1", "P2", "P3"]
     else:
-        tasks = ["C4", "C5", "C6", "R2", "P1"]
+        tasks = ["C4", "C5", "C6", "R2", "P1", "P2", "P3"]
     data = [[int(v) for v in evaluations[k]] for k in tasks]
     plt.imshow(data, interpolation="nearest", aspect=len(indexes) / 35,
                cmap=ListedColormap(["k", "w"]))

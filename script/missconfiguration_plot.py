@@ -9,8 +9,8 @@ from matplotlib.colors import ListedColormap
 INVALID_SIGNATURE, NO_DEFAULT_IDENTITY, SAFE_IDENTITY_RESTORED, LOG_FILE = 260, 268, 277, abspath(
     f"{dirname(__file__)}/../logs/missconfiguration_logs.json")
 METRICS = [f"M{i + 1}" for i in range(12)]
-TASKS = ["C5", "C13"] \
-    + ["R6", "R7"] \
+TASKS = ["C5", "C13", "C14"] \
+    + ["R2", "R6", "R7"] \
     + [f"P{i+1}"for i in range(3)]
 
 

@@ -10,7 +10,7 @@ INVALID_SIGNATURE, NO_DEFAULT_IDENTITY, SAFE_IDENTITY_RESTORED, LOG_FILE = (
     260,
     268,
     277,
-    abspath(f"{dirname(__file__)}/../logs/missconfiguration_logs.json"),
+    abspath(f"{dirname(__file__)}/../logs/misconfiguration_logs.json"),
 )
 METRICS = [f"M{i + 1}" for i in range(12)]
 TASKS = ["C13", "C14"] + ["R6", "R7"] + [f"P{i+1}" for i in range(3)]
@@ -140,6 +140,6 @@ if __name__ == "__main__":
     plt.ylabel("Task", loc="top")
     plt.tight_layout()
     plt.xlim(S_START, S_END)
-    plt.savefig("../plots/missconfiguration.pdf", format="pdf")
-    plt.savefig("../plots/missconfiguration.png", format="png")
+    plt.savefig("../plots/misconfiguration.pdf", format="pdf")
+    plt.savefig("../plots/misconfiguration.png", format="png")
     plt.show()

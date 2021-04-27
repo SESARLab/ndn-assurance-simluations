@@ -8,14 +8,14 @@ import pandas as pd
 from sklearn import linear_model
 
 LOG_FILES = {
-    "P1": [abspath(f"{dirname(__file__)}/../logs/p1_logs_{i}.json") for i in [1, 2, 3]],
-    "P1∧P2": [
+    "p1": [abspath(f"{dirname(__file__)}/../logs/p1_logs_{i}.json") for i in [1, 2, 3]],
+    "p1∧p2": [
         abspath(f"{dirname(__file__)}/../logs/p1+p2_logs_{i}.json") for i in [1, 2, 3]
     ],
-    "P2∧P3": [
+    "p2∧p3": [
         abspath(f"{dirname(__file__)}/../logs/p2+p3_logs_{i}.json") for i in [1, 2, 3]
     ],
-    "P1∧P2∧P3": [
+    "p1∧p2∧p3": [
         abspath(f"{dirname(__file__)}/../logs/p1+p2+p3_logs_{i}.json")
         for i in [1, 2, 3]
     ],

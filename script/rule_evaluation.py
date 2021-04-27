@@ -31,7 +31,7 @@ if __name__ == "__main__":
 
     plot_data = pd.DataFrame.from_dict(logs_data).transpose().sort_index()
     plot_data /= len(log_files)
-    plot_data /= 10e9
+    plot_data /= 10e6
     plot_data = plot_data[:501]
 
     for c in plot_data.columns:
@@ -47,9 +47,9 @@ if __name__ == "__main__":
         "dashdot",
         "dotted",
         "solid",
-        "solid",
-        "solid",
-        "solid",
+        "dashed",
+        "dashdot",
+        "dotted"
     ]
     widths = [0.75] * 4 + [0.5] * 4
     colors = ["k"] * len(plot_data.columns)
@@ -60,7 +60,7 @@ if __name__ == "__main__":
             linestyle=style, linewidth=linewidth, c=color, legend=True
         )
     plt.xlabel("Time (s)", loc="right")
-    plt.ylabel("Execution time (s)", loc="top")
+    plt.ylabel("Execution time (ms)", loc="top")
     plt.legend(frameon=False)
     plt.tight_layout()
     plt.savefig("../plots/rule_evaluation.pdf", format="pdf")

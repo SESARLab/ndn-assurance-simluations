@@ -76,7 +76,8 @@ if __name__ == "__main__":
                         ["measurements_index", "M4", str(i), "M4", "avg"], data
                     ),
                     "M4 stdDev": access(
-                        ["measurements_index", "M4", str(i), "M4", "stdDev"], data
+                        ["measurements_index", "M4", str(
+                            i), "M4", "stdDev"], data
                     ),
                     "M8 min": access_min(
                         ["measurements_index", "M8", str(i), "M8"], data
@@ -92,7 +93,8 @@ if __name__ == "__main__":
     evaluations_data = (
         pd.DataFrame.from_dict(
             {
-                i: {t: access(["evaluations_index", t, str(i)], data) for t in TASKS}
+                i: {t: access(["evaluations_index", t, str(i)], data)
+                    for t in TASKS}
                 for i in range(1, S_END)
             },
             orient="index",
@@ -103,8 +105,8 @@ if __name__ == "__main__":
 
     plt.subplots(nrows=2, ncols=1, sharex="col")
     ax = plt.subplot(2, 1, 1)
-    labels = ["m2, m3", "m4 avg", "m4.stdDev", "m8.min"]
-    columns = ["M2", "M4 avg", "M4 stdDev", "M8 min"]
+    labels = ["m2, m3", "m4.avg, m8.min", "m4.stdDev"]
+    columns = ["M2", "M4 avg", "M4 stdDev"]
     style = ["solid", "dotted", "dashdot", "dashed"]
     for col, lab, sty in zip(columns, labels, style):
         ax.plot(
@@ -131,7 +133,7 @@ if __name__ == "__main__":
     ax.imshow(
         evaluations_data.astype(float).transpose(),
         interpolation="nearest",
-        aspect=len(evaluations_data)/60,
+        aspect=len(evaluations_data)/50,
         cmap=ListedColormap(["k", "w"]),
     )
     vertical_lines(ax)

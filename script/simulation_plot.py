@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import json
 from os.path import dirname, abspath
 from typing import List, Dict, Any
@@ -14,14 +15,14 @@ tasks, S_START, S_END, ATTACK_START, ATTACK_END, LOG_FILE = (
     None,
     abspath(f"{dirname(__file__)}/../logs/execution_new_rule.json"),
 )
-tasks, S_START, S_END, ATTACK_START, ATTACK_END, LOG_FILE = (
-    ["C6", "C7", "C11", "R2", "R5", "P1"],
-    200,
-    650,
-    249,
-    259,
-    abspath(f"{dirname(__file__)}/../logs/attack_new_rule.json"),
-)
+# tasks, S_START, S_END, ATTACK_START, ATTACK_END, LOG_FILE = (
+#     ["C6", "C7", "C11", "R2", "R5", "P1"],
+#     200,
+#     650,
+#     249,
+#     259,
+#     abspath(f"{dirname(__file__)}/../logs/attack_new_rule.json"),
+# )
 
 METRICS = [f"M{i + 1}" for i in range(12)]
 METRICS.remove("M5")
@@ -135,7 +136,7 @@ if __name__ == "__main__":
     ax.imshow(
         evaluations_data.transpose().astype(float).values,
         interpolation="nearest",
-        aspect="auto",
+        aspect=len(evaluations_data)/60,
         cmap=ListedColormap(["k", "w"]),
     )
     vertical_lines()

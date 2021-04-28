@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import json
 from typing import Dict, List, Any
 from os.path import dirname, abspath
@@ -129,7 +131,7 @@ if __name__ == "__main__":
     ax.imshow(
         evaluations_data.astype(float).transpose(),
         interpolation="nearest",
-        aspect="auto",
+        aspect=len(evaluations_data)/60,
         cmap=ListedColormap(["k", "w"]),
     )
     vertical_lines(ax)

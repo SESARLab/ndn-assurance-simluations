@@ -144,4 +144,4 @@ if __name__ == "__main__":
     plt.xlim(S_START, S_END)
     plt.savefig("../plots/misconfiguration.pdf", format="pdf")
     plt.savefig("../plots/misconfiguration.png", format="png")
-    plt.show()
+    # plt.show()
